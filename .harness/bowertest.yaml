@@ -47,6 +47,8 @@ pipeline:
                   spec:
                     shell: Sh
                     command: npm test
+                    envVariables:
+                      CI: "true"
               - step:
                   type: Run
                   name: bower-logger tests
