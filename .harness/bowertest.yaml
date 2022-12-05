@@ -33,3 +33,24 @@ pipeline:
                   spec:
                     shell: Sh
                     command: yarn && (cd packages/bower-json && yarn link) && yarn link bower-json
+              - step:
+                  type: Run
+                  name: lint
+                  identifier: lint
+                  spec:
+                    shell: Sh
+                    command: npm run lint
+              - step:
+                  type: Run
+                  name: bower tests
+                  identifier: bower_tests
+                  spec:
+                    shell: Sh
+                    command: npm test
+              - step:
+                  type: Run
+                  name: bower-logger tests
+                  identifier: bowerlogger_tests
+                  spec:
+                    shell: Sh
+                    command: (cd packages/bower-logger && npm install && npm test)
