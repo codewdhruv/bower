@@ -55,4 +55,5 @@ pipeline:
                   identifier: bowerlogger_tests
                   spec:
                     shell: Sh
+                    fail-fast: false
                     command: (cd packages/bower-logger && npm install && npm test)
