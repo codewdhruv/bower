@@ -28,6 +28,16 @@ pipeline:
             steps:
               - step:
                   type: Run
+                  name: set git config
+                  identifier: set_git_config
+                  spec:
+                    shell: Sh
+                    command: |-
+                      git config --global core.autocrlf false
+                      git config --global core.symlinks true
+                      if: runner.os == 'Windows'
+              - step:
+                  type: Run
                   name: install
                   identifier: install
                   spec:
