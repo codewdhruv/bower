@@ -51,11 +51,21 @@ pipeline:
                       CI: "true"
               - step:
                   type: Run
-                  name: bower-logger tests
+                  name: bower-item tests
                   identifier: bowerlogger_tests
                   spec:
                     shell: Sh
-                    command: (cd packages/bower-logger && npm install && npm test)
+                    command: (cd packages/bower-<+matrix.deps> && npm install && npm test)
+                  failureStrategies: []
+                  strategy:
+                    matrix:
+                      deps:
+                        - logger
+                        - config
+                        - endpoint-parser
+                        - json
+                        - registry-client
+                      maxConcurrency: 1
         when:
           pipelineStatus: Success
         failureStrategies:
